@@ -47,9 +47,8 @@ class DatabaseConnect {
     final db = await database;
     List<Map<String, dynamic>> items = await db.query(
       'todo',
-      orderBy: 'id DESC',
+      orderBy: 'id ASC',
     );
-    print('Task added');
 
     return List.generate(
       items.length,
@@ -59,20 +58,6 @@ class DatabaseConnect {
         creationDate: DateTime.parse(items[i]['creationDate']),
         isChecked: items[i]['isChecked'] == 1 ? true : false,
       ),
-    );
-  }
-
-  Future<void> updateTodo(int id, String title) async {
-    final db = await database;
-
-    await db.update(
-      'todo',
-      {
-        //
-        'title': title,
-      }, //
-      where: 'id == ?',
-      whereArgs: [id],
     );
   }
 }

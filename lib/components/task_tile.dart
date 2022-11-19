@@ -43,7 +43,6 @@ class _TaskTileState extends State<TaskTile> {
                 widget.isChecked = value!;
               });
               anotherTodo.isChecked = value!;
-              // insert it to database
               widget.insertFunction(anotherTodo);
             },
           ),

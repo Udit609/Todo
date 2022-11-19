@@ -16,12 +16,13 @@ class TodoList extends StatelessWidget {
     return FutureBuilder(
       future: db.getTodo(),
       initialData: const [],
-      builder: (context, AsyncSnapshot<List> snapshot) {
-        // var data = snapshot.data;
-        // var dataLength = data!.length;
-        if (!snapshot.hasData) {
+      builder: (_, AsyncSnapshot<List> snapshot) {
+        if (snapshot.data!.isEmpty) {
           return const Center(
-            child: Text('Add a task'),
+            child: Text(
+              'Add a task',
+              style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w400),
+            ),
           );
         } else {
           return ListView.builder(
